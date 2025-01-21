@@ -1,4 +1,7 @@
-# Training LocalTreinamento - NomeDoTreinamento
+# Training Leitura Livro - MySQL Tutorial Uma introdução objetiva aos fundamentos do banco de dados MySQL
+
+  ![Livro MySQL Tutorial](./images/LivroTutorialMySQL.jpg)
+
 
 ## Estrutura do Repositório
 
