@@ -21,8 +21,8 @@ Na versão 8.4, não foram encontradas contas anônimas por padrão, o que facil
 A sintaxe para criar usuários e conceder privilégios foi atualizada. Utilizei os seguintes comandos:
 
 ```sql
-CREATE USER 'nomeusuario'@'%' IDENTIFIED BY 'MinhaSenha123';
-GRANT CREATE, CREATE TEMPORARY TABLES, DELETE, EXECUTE, INDEX, INSERT, LOCK TABLES, SELECT, SHOW DATABASES, UPDATE ON *.* TO 'nomeusuario'@'%';
+CREATE USER 'username'@'%' IDENTIFIED BY 'MinhaSenha123';
+GRANT CREATE, CREATE TEMPORARY TABLES, DELETE, EXECUTE, INDEX, INSERT, LOCK TABLES, SELECT, SHOW DATABASES, UPDATE ON *.* TO 'username'@'%';
 FLUSH PRIVILEGES;
 ```
 
