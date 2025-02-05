@@ -2,7 +2,7 @@
 
 ## Configuração Laboratório Treinamento
 
-### Processo de criação da VM
+### Processo de criação da VM Linux
 
 1. Registrar no Controle VirtualBox (Planilha Apontamentos, Guia VirtualBox)
 2. Definir IP fixo ou DHCP
@@ -15,8 +15,9 @@
 9. Criar entrada no Remmina para a VM
 10. Renomear o hostname
 11. Efetuar update & upgrade
+12. Efetuar Snapshot para evitar retrabalhos
 
-## Instalação do MySQL
+## Instalação do MySQL no Linux
 
 ### Download do MySQL
 
@@ -118,4 +119,107 @@ mysql -u username -p
 
 ---
 
-#### Teste
+### Processo de criação da VM Windows
+
+1. Registrar no Controle VirtualBox (Planilha Apontamentos, Guia VirtualBox)
+2. Definir IP fixo ou DHCP
+3. Clonar com base em um Template
+4. Ajustar informações na Descrição da VM
+5. Iniciar a VM em modo Headless
+6. Conectar na VM via RDP utilizando etiqueta do Template
+7. Ajustar IP em Windows Settings, Networking & Internet, Change Adapters Options, clique com o botão direito sobre a placa de rede e em seguida em Propriedades, procure por Internet Protocol Version 4 (TCP/IPv4) e faça os ajustes
+8. Criar entrada no Remmina para a VM
+9. Renomear o hostname
+10. Efetuar Windows Update
+11. Efetuar Snapshot para evitar retrabalhos
+
+## Instalação do MySQL no Windows
+
+### Download do MySQL
+
+- [Link para Página de Download MySQL](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html)
+
+- Versão baixada: MySQL Installer 8.0.41.
+
+### Checksums
+
+- Site:
+
+```text
+c2e89b80cf89c2214e5ecb9f91b77f10
+```
+
+- Verificar checksum do arquivo baixado:
+
+```bash
+md5sum mysql-installer-community-8.0.41.0.msi
+```
+
+- Retorno esperado:
+
+```text
+c2e89b80cf89c2214e5ecb9f91b77f10
+```
+
+### Instalação
+
+Baseado no passo a passo descrito em:
+
+- [Guia de Instalação](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html)
+
+Como eu fiz:
+
+1. Pasta Downloads
+2. Duplo clique no arquivo baixado (mysql-8.4.4-winx64.msi)
+3. Aceitar os termos da Licença
+4. Escolher entre os tipos de instalação:
+  - Typical (padrão): Recomendado para a maioria dos usuários, instala os recursos mais comuns do programa.
+  - Custom (customizada): Permite que os usuários alterem quais recursos do programa serão instalados e onde serão instalados. Recomendado para usuários avançados.
+  - Complete (completa): Todos os recursos do programa serão instalados. Requer mais espaço em disco.
+  Para a primeira parte dos meus estudos vou escolher a "Typical".
+5. Uma tela de confirmação do tipo de instalação é exibida, clicar em next para prosseguir.
+6. Na próxima tela é exibido o progresso da instalação e na sequência uma tela de confirmação de execução com sucesso da instalação do MySQL.
+  - ![Tela de boas-vindas](./images/TelaBoasVindasInstalacaoMySQL.png)
+7. Essa tela também permite que seja executado o MySQL Configurator, confirmei a execução.
+8. Execução do MySQL Configurator:
+  - Data Directory:
+    ![Tela Data Directory](./images/TelaDataDirectory.png)
+
+  - Type and Networking
+    ![Tela Type and Networking](./images/TelaTypeAndNetworking.png)
+
+  - Accounts and Roles  
+    ![Tela Accounts and Roles](./images/TelaAccountsAndRoles.png)
+
+  - Windows Service
+    ![Tela Windows Service](./images/TelaWindowsService.png)
+  
+  - Server File Permissions
+    ![Tela Server File Permissions](./images/TelaServerFilePermissions.png)
+
+  - Sample Databases
+    ![Tela Sample Databases](./images/TelaSampleDatabases.png)
+
+  - Apply Configuration
+    ![Tela Apply Configuration](./images/TelaApplyConfiguration.png)
+
+  - Apply Configuration Successful
+    ![Tela de Finalização Configuração](./images/TelaFinalizacaoConfiguracao.png)
+
+  - Configuration Complete
+    ![Tela Configuration Complete](./images/TelaConfigurationComplete.png)
+
+9. Serviço do MySQL Server em execução
+  ![Serviço MySQL Server em execução](./images/TelaServicoMySQLServerExecucao.png)
+
+### Primeira conexão
+
+Executar o "MySQL 8.4 Command Line Client que foi criado no Grupo de Programas MySQL:
+  ![Tela Grupo Programa MySQL Line Client](./images/TelaGrupoProgramaMySQLLineClient.png)
+
+Listar Databases existentes:
+  ![Tela com resultado da consulta](./images/TelaComResultadoDaConsulta.png)
+
+---
+
+#### Próximos passos

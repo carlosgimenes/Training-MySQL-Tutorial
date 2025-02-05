@@ -1,6 +1,5 @@
 # Guia de Referência Rápida
 
-
 - Para iniciar o MySQL
 ```sql
 sudo systemctl start mysql
