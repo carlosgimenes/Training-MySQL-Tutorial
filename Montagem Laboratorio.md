@@ -185,7 +185,6 @@ c2e89b80cf89c2214e5ecb9f91b77f10
    - **Type and Networking**: Permite escolher o tipo de servidor (Standalone, Clustered) e ajustar as configurações de rede. Para estudos iniciais, escolha "Standalone" e configure a porta padrão 3306.
      ![Tela Type and Networking](./images/TelaTypeAndNetworking.png)
    - **Accounts and Roles**: Configuração de contas de administrador. Certifique-se de definir uma senha segura para o usuário root.
-     ![Tela Accounts and Roles](./images/TelaAccountsAndRoles.png)
    - **Windows Service**: Define o MySQL como um serviço do Windows, permitindo inicialização automática.
      ![Tela Windows Service](./images/TelaWindowsService.png)
    - **Server File Permissions**: Permite ajustar permissões para maior segurança no acesso aos arquivos do servidor.
