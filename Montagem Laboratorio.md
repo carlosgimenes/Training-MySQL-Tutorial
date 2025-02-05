@@ -1,59 +1,63 @@
-# **Training Leitura Livro - MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
+# **Training Livro - MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
 
-## Configuração Laboratório Treinamento
+## **Configuração do Laboratório de Estudo - MySQL Server**
 
-### Processo de criação da VM Linux
+Este documento detalha o processo de criação de um laboratório para estudo do MySQL Server, cobrindo instalação e configuração tanto em um servidor Linux Ubuntu Server 24.04.1 LTS quanto em um servidor Windows Server 2019 Evaluation Edition. O objetivo é fornecer um guia prático para preparação do ambiente necessário aos estudos.
 
-1. Registrar no Controle VirtualBox (Planilha Apontamentos, Guia VirtualBox)
-2. Definir IP fixo ou DHCP
-3. Clonar com base em um Template
-4. Ajustar informações na Descrição da VM
-5. Iniciar a VM em modo Headless
-6. Conectar na VM via SSH utilizando etiqueta do Template
-7. Ajustar IP em `ConfigurarRedeComIpFixo.sh`
-8. Executar `ConfigurarRedeComIpFixo.sh` para efetivar alteração do IP
-9. Criar entrada no Remmina para a VM
-10. Renomear o hostname
-11. Efetuar update & upgrade
-12. Efetuar Snapshot para evitar retrabalhos
+---
 
-## Instalação do MySQL no Linux
+## Parte 1: Configuração no Servidor Linux Ubuntu
 
-### Download do MySQL
+### Processo de Criação da VM Linux
 
-- [Link para Página de Download MySQL](https://dev.mysql.com/downloads/mysql/)
+1. Registrar a VM no Controle VirtualBox (Planilha Apontamentos, Guia VirtualBox).
+2. Configurar IP fixo ou via DHCP.
+3. Clonar a VM com base em um Template preexistente.
+4. Atualizar as informações na descrição da VM.
+5. Iniciar a VM em modo Headless.
+6. Conectar à VM via SSH utilizando as credenciais do Template.
+7. Configurar o IP: ajustar o script `ConfigurarRedeComIpFixo.sh`.
+8. Criar uma entrada no Remmina para acesso remoto.
+9. Renomear o hostname.
+10. Atualizar o sistema:  `sudo apt update && sudo apt upgrade -y`.
+11. Criar um Snapshot da VM para evitar retrabalhos em caso de problemas futuros. Certifique-se de que todas as atualizações e configurações iniciais estejam completas antes de criar o Snapshot, para garantir um ponto de recuperação confiável.
 
-- Versão baixada: 8.4.3 LTS "DEB Bundle" para Ubuntu 20.04 (inclui todos os pacotes necessários).
+### Instalação do MySQL no Linux
 
-### Checksums
+#### Download do MySQL
 
-- Site:
+- **Link para página de download:** [MySQL Downloads](https://dev.mysql.com/downloads/mysql/).
+- **Versão utilizada:** 8.4.3 LTS "DEB Bundle" para Ubuntu 20.04.
+
+#### Verificação do Checksum
+
+- **Checksum do site:**
 
 ```text
 8e645a96ce624fa9cf0bc8adc487422c
 ```
 
-- Verificar checksum do arquivo baixado:
+- **Comando para verificação:**
 
 ```bash
 md5sum mysql-server_8.4.3-1ubuntu24.04_amd64.deb-bundle.tar
 ```
 
-- Retorno esperado:
+- **Resultado esperado:**
 
 ```text
 8e645a96ce624fa9cf0bc8adc487422c
 ```
 
-### Transferindo o arquivo baixado para a VM
+#### Transferência do Arquivo para a VM
 
-#### No Host
+Execute no host:
 
 ```bash
-scp mysql-community-server_8.4.3-1ubuntu24.04_amd64.deb username@192.168.0.xxx:/tmp
+scp mysql-server_8.4.3-1ubuntu24.04_amd64.deb-bundle.tar username@192.168.0.xxx:/tmp
 ```
 
-#### Na VM
+Execute na VM:
 
 ```bash
 cd /tmp
@@ -61,164 +65,139 @@ mv mysql-server_8.4.3-1ubuntu24.04_amd64.deb-bundle.tar /home/username/
 cd /home/username/
 ```
 
-### Instalação
+#### Instalação do MySQL
 
-Baseado no passo a passo descrito em:
+Baseado no guia oficial de instalação: [Guia de Instalação MySQL](https://dev.mysql.com/doc/refman/8.4/en/linux-installation-debian.html).
 
-- [Guia de Instalação](https://dev.mysql.com/doc/refman/8.4/en/linux-installation-debian.html)
-
-Como eu fiz:
+Passos executados:
 
 ```bash
-cd /home/username/
 tar -xvf mysql-server_8.4.3-1ubuntu24.04_amd64.deb-bundle.tar
 sudo apt-get install libaio1
 sudo dpkg-preconfigure mysql-community-server_*.deb
 sudo dpkg -i mysql-{common,community-client-plugins,community-client-core,community-client,client,community-server-core,community-server,server}_*.deb
 sudo apt-get -f install
-# Definir senha para root: Minh@Senh@123
+```
+
+Durante a instalação, defina uma senha segura para o usuário root.
+
+Reinicie o sistema e verifique o status do serviço:
+
+```bash
 sudo reboot
 sudo systemctl status mysql
 ```
 
-### Primeira conexão
+#### Primeira Conexão
+
+Acesse o MySQL:
 
 ```bash
 mysql -u root -p
-# Senha: Minh@Senh@123
+# Insira a senha definida.
 ```
 
-### Criar usuário: `username`
+#### Criação de um Usuário
 
-**Sintaxe:**
-
-1. **Criar o usuário**
+1. Criar o usuário:
 
 ```sql
-CREATE USER 'username'@'%' IDENTIFIED BY 'MinhaSenha123';
+CREATE USER 'username'@'%' IDENTIFIED BY '<SENHA_FORTE>';
 ```
 
-2. **Conceder privilégios**
+2. Conceder privilégios:
 
 ```sql
-GRANT CREATE, CREATE TEMPORARY TABLES, DELETE, EXECUTE, INDEX, INSERT, LOCK TABLES, SELECT, SHOW DATABASES, UPDATE ON *.* TO 'username'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'%';
 ```
 
-3. **Aplicar mudanças**
+3. Aplicar mudanças:
 
 ```sql
 FLUSH PRIVILEGES;
 ```
 
-4. **Testar o acesso**
+4. Testar o acesso:
 
 ```bash
 mysql -u username -p
-# Senha: MinhaSenha123
+# Insira a senha definida.
 ```
 
 ---
 
-### Processo de criação da VM Windows
+## Parte 2: Configuração no Servidor Windows 2019
 
-1. Registrar no Controle VirtualBox (Planilha Apontamentos, Guia VirtualBox)
-2. Definir IP fixo ou DHCP
-3. Clonar com base em um Template
-4. Ajustar informações na Descrição da VM
-5. Iniciar a VM em modo Headless
-6. Conectar na VM via RDP utilizando etiqueta do Template
-7. Ajustar IP em Windows Settings, Networking & Internet, Change Adapters Options, clique com o botão direito sobre a placa de rede e em seguida em Propriedades, procure por Internet Protocol Version 4 (TCP/IPv4) e faça os ajustes
-8. Criar entrada no Remmina para a VM
-9. Renomear o hostname
-10. Efetuar Windows Update
-11. Efetuar Snapshot para evitar retrabalhos
+### Processo de Criação da VM Windows
 
-## Instalação do MySQL no Windows
+1. Registrar a VM no Controle VirtualBox (Planilha Apontamentos, Guia VirtualBox).
+2. Configurar IP fixo ou via DHCP.
+3. Clonar a VM com base em um Template preexistente.
+4. Atualizar as informações na descrição da VM.
+5. Iniciar a VM em modo Headless.
+6. Conectar à VM via RDP utilizando as credenciais do Template.
+7. Configurar o IP no painel "Configurações de Rede" (procurar pelo protocolo IPv4 e ajustar conforme necessário).
+8. Criar uma entrada no Remmina para acesso remoto.
+9. Renomear o hostname.
+10. Atualizar o sistema via Windows Update.
+11. Criar um Snapshot da VM para evitar retrabalhos em caso de problemas futuros. Certifique-se de que todas as atualizações e configurações iniciais estejam completas antes de criar o Snapshot, para garantir um ponto de recuperação confiável.
 
-### Download do MySQL
+### Instalação do MySQL no Windows
 
-- [Link para Página de Download MySQL](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html)
+#### Download do MySQL
 
-- Versão baixada: MySQL Installer 8.0.41.
+- **Link para página de download:** [MySQL Downloads](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html).
+- **Versão utilizada:** MySQL Installer 8.0.41.
 
-### Checksums
+#### Verificação do Checksum
 
-- Site:
+- **Checksum do site:**
 
 ```text
 c2e89b80cf89c2214e5ecb9f91b77f10
 ```
 
-- Verificar checksum do arquivo baixado:
+- **Comando para verificação:**
 
 ```bash
 md5sum mysql-installer-community-8.0.41.0.msi
 ```
 
-- Retorno esperado:
+- **Resultado esperado:**
 
 ```text
 c2e89b80cf89c2214e5ecb9f91b77f10
 ```
 
-### Instalação
+#### Instalação do MySQL
 
-Baseado no passo a passo descrito em:
+1. Navegue até a pasta "Downloads".
+2. Execute o instalador baixado.
+3. Aceite os termos de licença.
+4. Escolha o tipo de instalação:
+   - **Typical**: Instala os componentes mais comuns, ideal para a maioria dos casos iniciais e recomendado para novos usuários.
+   - **Custom**: Permite escolher quais componentes instalar e onde armazená-los, ideal para usuários avançados ou configurações específicas.
+   - **Complete**: Instala todos os componentes disponíveis, ocupando mais espaço em disco, mas fornecendo o máximo de recursos possíveis.
+5. Prossiga com a instalação e aguarde a conclusão.
+6. Execute o MySQL Configurator para ajustar as configurações, com base nas seguintes telas e impactos:
+   - **Data Directory**: Define o local de armazenamento dos arquivos de dados. Alterar esse caminho pode ser útil para ambientes com particionamento específico ou discos de alto desempenho.
+     ![Tela Data Directory](./images/TelaDataDirectory.png)
+   - **Type and Networking**: Permite escolher o tipo de servidor (Standalone, Clustered) e ajustar as configurações de rede. Para estudos iniciais, escolha "Standalone" e configure a porta padrão 3306.
+     ![Tela Type and Networking](./images/TelaTypeAndNetworking.png)
+   - **Accounts and Roles**: Configuração de contas de administrador. Certifique-se de definir uma senha segura para o usuário root.
+     ![Tela Accounts and Roles](./images/TelaAccountsAndRoles.png)
+   - **Windows Service**: Define o MySQL como um serviço do Windows, permitindo inicialização automática.
+     ![Tela Windows Service](./images/TelaWindowsService.png)
+   - **Server File Permissions**: Permite ajustar permissões para maior segurança no acesso aos arquivos do servidor.
+     ![Tela Server File Permissions](./images/TelaServerFilePermissions.png)
+   - **Sample Databases**: Instala bases de dados de exemplo para exploração inicial. Útil para testes e aprendizado.
+     ![Tela Sample Databases](./images/TelaSampleDatabases.png)
+   - **Apply Configuration**: Aplica todas as configurações e valida o sucesso da instalação.
+     ![Tela Apply Configuration](./images/TelaApplyConfiguration.png)
 
-- [Guia de Instalação](https://dev.mysql.com/doc/refman/8.4/en/windows-installation.html)
+#### Primeira Conexão
 
-Como eu fiz:
-
-1. Pasta Downloads
-2. Duplo clique no arquivo baixado (mysql-8.4.4-winx64.msi)
-3. Aceitar os termos da Licença
-4. Escolher entre os tipos de instalação:
-  - Typical (padrão): Recomendado para a maioria dos usuários, instala os recursos mais comuns do programa.
-  - Custom (customizada): Permite que os usuários alterem quais recursos do programa serão instalados e onde serão instalados. Recomendado para usuários avançados.
-  - Complete (completa): Todos os recursos do programa serão instalados. Requer mais espaço em disco.
-  Para a primeira parte dos meus estudos vou escolher a "Typical".
-5. Uma tela de confirmação do tipo de instalação é exibida, clicar em next para prosseguir.
-6. Na próxima tela é exibido o progresso da instalação e na sequência uma tela de confirmação de execução com sucesso da instalação do MySQL.
-  - ![Tela de boas-vindas](./images/TelaBoasVindasInstalacaoMySQL.png)
-7. Essa tela também permite que seja executado o MySQL Configurator, confirmei a execução.
-8. Execução do MySQL Configurator:
-  - Data Directory:
-    ![Tela Data Directory](./images/TelaDataDirectory.png)
-
-  - Type and Networking
-    ![Tela Type and Networking](./images/TelaTypeAndNetworking.png)
-
-  - Accounts and Roles  
-    ![Tela Accounts and Roles](./images/TelaAccountsAndRoles.png)
-
-  - Windows Service
-    ![Tela Windows Service](./images/TelaWindowsService.png)
-  
-  - Server File Permissions
-    ![Tela Server File Permissions](./images/TelaServerFilePermissions.png)
-
-  - Sample Databases
-    ![Tela Sample Databases](./images/TelaSampleDatabases.png)
-
-  - Apply Configuration
-    ![Tela Apply Configuration](./images/TelaApplyConfiguration.png)
-
-  - Apply Configuration Successful
-    ![Tela de Finalização Configuração](./images/TelaFinalizacaoConfiguracao.png)
-
-  - Configuration Complete
-    ![Tela Configuration Complete](./images/TelaConfigurationComplete.png)
-
-9. Serviço do MySQL Server em execução
-  ![Serviço MySQL Server em execução](./images/TelaServicoMySQLServerExecucao.png)
-
-### Primeira conexão
-
-Executar o "MySQL 8.4 Command Line Client que foi criado no Grupo de Programas MySQL:
-  ![Tela Grupo Programa MySQL Line Client](./images/TelaGrupoProgramaMySQLLineClient.png)
-
-Listar Databases existentes:
-  ![Tela com resultado da consulta](./images/TelaComResultadoDaConsulta.png)
+Use o cliente MySQL instalado para conectar-se ao servidor e testar o acesso.
 
 ---
 
