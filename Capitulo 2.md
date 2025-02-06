@@ -1,4 +1,4 @@
-# **MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
+# **Tutorial MySQL: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
 
 ## A estrutura de diretórios do MySQL
 
