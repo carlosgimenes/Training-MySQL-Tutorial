@@ -201,7 +201,8 @@ Use o cliente MySQL instalado para conectar-se ao servidor e testar o acesso.
 
 ---
 
-#### Próximos passos 
+## Guia de Referência Rápida
 
+[Ir para página Guia Referência Rápida](Guia%20de%20Referencia%20Rapida.md)
 
-[def]: ./images/TelaAccountsAndRoles.png
+---
