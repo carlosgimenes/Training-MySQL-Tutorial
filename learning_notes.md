@@ -1,4 +1,4 @@
-# Training LocalTreinamento - NomeDoTreinamento
+# **MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
 
 ## Lições Aprendidas
 

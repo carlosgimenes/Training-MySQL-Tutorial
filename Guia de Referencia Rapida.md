@@ -1,4 +1,6 @@
-# Guia de Referência Rápida
+# **MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
+
+## Guia de Referência Rápida
 
 - Para iniciar o MySQL
 ```sql

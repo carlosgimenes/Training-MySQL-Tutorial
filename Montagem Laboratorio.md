@@ -1,4 +1,4 @@
-# **Training Livro - MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
+# **MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
 
 ## **Configuração do Laboratório de Estudo - MySQL Server**
 

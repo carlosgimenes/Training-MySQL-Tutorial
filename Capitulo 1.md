@@ -1,4 +1,4 @@
-# **Training Leitura Livro - MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
+# **MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
 
 ## Onde baixar o MySQL
 
@@ -21,7 +21,7 @@ Na versão 8.4, não foram encontradas contas anônimas por padrão, o que facil
 A sintaxe para criar usuários e conceder privilégios foi atualizada. Utilizei os seguintes comandos:
 
 ```sql
-CREATE USER 'username'@'%' IDENTIFIED BY 'MinhaSenha123';
+CREATE USER 'username'@'%' IDENTIFIED BY '<SENHA_FORTE>';
 GRANT CREATE, CREATE TEMPORARY TABLES, DELETE, EXECUTE, INDEX, INSERT, LOCK TABLES, SELECT, SHOW DATABASES, UPDATE ON *.* TO 'username'@'%';
 FLUSH PRIVILEGES;
 ```

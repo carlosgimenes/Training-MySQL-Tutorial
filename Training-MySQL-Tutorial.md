@@ -1,4 +1,4 @@
-# Training Leitura Livro - MySQL Tutorial Uma introdução objetiva aos fundamentos do banco de dados MySQL
+# Training Livro - MySQL Tutorial Uma introdução objetiva aos fundamentos do banco de dados MySQL
 
 ### **Instrutor**: NomeDoInstrutor
 ### **Linkedin**: [Perfil do LinkeIn](ColeAquiLinkPaginaPerfilLinkedinInstrutor)

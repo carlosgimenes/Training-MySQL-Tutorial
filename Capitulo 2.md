@@ -1,4 +1,4 @@
-# **Training Leitura Livro - MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
+# **MySQL Tutorial: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
 
 ## A estrutura de diretórios do MySQL
 
