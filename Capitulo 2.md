@@ -1,6 +1,8 @@
 # **Tutorial MySQL: Uma Introdução Objetiva aos Fundamentos do Banco de Dados MySQL**
 
-## A estrutura de diretórios do MySQL
+## Capítulo 2 - Como conhecer o MySQL
+
+### A estrutura de diretórios do MySQL
 
 Na instalação que realizei para a versão 8.4, a estrutura é a seguinte:
 
@@ -10,7 +12,7 @@ Na instalação que realizei para a versão 8.4, a estrutura é a seguinte:
 4. **Diretório de logs**: `/var/log/mysql`
 5. **Diretório de binários**: `/usr/bin/mysql`
 
-## Uma visão geral dos executáveis
+### Uma visão geral dos executáveis
 
 1. **mysqladmin**:
     - **Descrição**: Ferramenta de administração do MySQL que permite executar várias operações administrativas, como redefinir a senha do usuário, iniciar/parar o servidor, verificar o status do servidor, entre outras.
@@ -32,7 +34,7 @@ Na instalação que realizei para a versão 8.4, a estrutura é a seguinte:
     - **Descrição**: Ferramenta para mostrar informações sobre bancos de dados, tabelas e colunas do MySQL. É útil para obter uma visão rápida da estrutura do banco de dados.
     - **Status**: Ainda é utilizado, embora outras ferramentas como `SHOW DATABASES` e `SHOW TABLES` também sejam comumente usadas para obter informações semelhantes.
 
-## Uma visão geral das interfaces do usuário
+### Uma visão geral das interfaces do usuário
 
 No MySQL, você tem várias opções para a interface do usuário. As interfaces do usuário mais populares são a interface da linha de comandos `mysql` (também conhecida como monitor MySQL) e o phpMyAdmin.
 
@@ -42,7 +44,7 @@ O phpMyAdmin é uma interface baseada na web para usar o MySQL. É muito popular
 
 Se você tiver o MySQL instalado, já terá, também, o monitor MySQL. No entanto, caso esteja utilizando um desktop para acessar um MySQL que esteja rodando em um servidor remoto, você pode fazer a instalação do `mysql client`.
 
-## Instalação do monitor MySQL (mysql client) em um desktop Linux Ubuntu sem instalar o servidor MySQL
+### Instalação do monitor MySQL (mysql client) em um desktop Linux Ubuntu sem instalar o servidor MySQL
 
 1. **Atualize os pacotes do sistema**:
 
@@ -64,7 +66,7 @@ mysql -u seu_usuario -p -h endereco_do_servidor
 
 Isso permitirá que você utilize o cliente MySQL em seu desktop Ubuntu para executar consultas SQL no servidor remoto sem precisar instalar o servidor MySQL localmente.
 
-## Uma introdução rápida ao monitor MySQL
+### Uma introdução rápida ao monitor MySQL
 
 Agora, um pouco sobre o básico do monitor MySQL.
 
