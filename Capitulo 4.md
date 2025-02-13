@@ -241,8 +241,7 @@ CREATE TABLE assignment (
 
    - Retorna a lista de tabelas criadas no banco de dados atual.
    - **Exemplo de saída:**
-   
-   ![Resultado SHOW TABLES](./images/TelaResultadoShowTables.png)
+     - ![Resultado SHOW TABLES](./images/TelaResultadoShowTables.png)
 
 2. **Inspecionar uma tabela:**
 
@@ -259,8 +258,126 @@ CREATE TABLE assignment (
    ```
 
    - **Exemplo de saída:**
+     - ![Resultado DESCRIBE department](./images/TelaResultadoDescribleDepartment.png)
 
-   ![Resultado DESCRIBE department](./images/TelaResultadoDescribleDepartment.png)
+---
+
+### **Instrução CREATE TABLE**
+
+A instrução `CREATE TABLE` é usada para criar tabelas no banco de dados. Ela define a estrutura da tabela, incluindo nomes das colunas, tipos de dados e restrições. Vamos explorar alguns pontos importantes sobre esta instrução:
+
+#### **Estrutura Básica**
+
+```sql
+CREATE TABLE nome_tabela (
+    coluna1 tipo1 [restrições],
+    coluna2 tipo2 [restrições],
+    ...
+) [ENGINE=tipo_de_mecanismo];
+```
+
+- **`nome_tabela`**: Nome da tabela a ser criada.
+- **`coluna1`, `coluna2`**: Nomes das colunas.
+- **`tipo1`, `tipo2`**: Tipos de dados atribuídos às colunas (ex.: `INT`, `VARCHAR`, `DATE`).
+- **`restrições`**: Opções como `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY` etc.
+- **`ENGINE`**: Define o mecanismo de armazenamento (ex.: `InnoDB`, `MyISAM`).
+
+#### **Tipos de Dados Comuns**
+
+1. **Numéricos**:
+   - `INT`, `SMALLINT`, `BIGINT` (números inteiros).
+   - `DECIMAL`, `FLOAT` (números com casas decimais).
+
+2. **Texto**:
+   - `CHAR(n)` (texto de comprimento fixo).
+   - `VARCHAR(n)` (texto de comprimento variável).
+   - `TEXT` (grande quantidade de texto).
+
+3. **Datas**:
+   - `DATE` (apenas data).
+   - `DATETIME` (data e hora).
+
+4. **Booleanos**:
+   - `BOOLEAN` ou `TINYINT(1)` (valores verdadeiro/falso).
+
+#### **Exemplo Simples**
+
+Criação de uma tabela `produtos`:
+
+```sql
+CREATE TABLE produtos (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    data_cadastro DATE
+) ENGINE=InnoDB;
+```
+
+- **`id`**: Identificador único para cada produto, com incremento automático.
+- **`nome`**: Nome do produto, obrigatório.
+- **`preco`**: Preço do produto, obrigatório, com duas casas decimais.
+- **`data_cadastro`**: Data de inclusão do produto no sistema.
+
+#### **Comando para Listar Tabelas Criadas**
+
+```sql
+SHOW TABLES;
+```
+
+#### **Visualizando Estrutura de uma Tabela**
+
+```sql
+DESCRIBE produtos;
+```
+
+---
+
+### **Tabelas Temporárias no MySQL**
+
+No MySQL, é possível criar tabelas temporárias que só existem durante a sessão atual do usuário. Elas são úteis para armazenar dados intermediários sem impactar as tabelas permanentes do banco de dados.
+
+#### **Como Criar uma Tabela Temporária**
+
+A instrução `CREATE TEMPORARY TABLE` é usada para criar tabelas temporárias:
+
+```sql
+CREATE TEMPORARY TABLE nome_temporario (
+    coluna1 tipo1 [restrições],
+    coluna2 tipo2 [restrições],
+    ...
+);
+```
+
+- **`TEMPORARY`**: Indica que a tabela é temporária.
+- Essas tabelas são excluídas automaticamente ao encerrar a sessão do usuário.
+
+#### **Exemplo Prático**
+
+```sql
+CREATE TEMPORARY TABLE temp_clientes (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    idade INT
+);
+
+INSERT INTO temp_clientes (nome, idade) VALUES ('João Silva', 30), ('Maria Lima', 25);
+
+SELECT * FROM temp_clientes;
+```
+
+- Neste exemplo, a tabela `temp_clientes` é criada e preenchida com dados temporários para análise.
+- Após o término da sessão, ela será automaticamente removida.
+
+#### **Diferenças para o SQL Server**
+
+- No SQL Server, tabelas temporárias são identificadas pelo símbolo de tralha (`#`) no nome da tabela, como `#TempTable`.
+- No MySQL, utiliza-se a palavra-chave `TEMPORARY` na instrução `CREATE TABLE` para indicar que a tabela é temporária.
+
+#### **Boas Práticas com Tabelas Temporárias**
+
+1. Use tabelas temporárias apenas quando necessário, para evitar consumo desnecessário de memória.
+2. Verifique se as tabelas foram criadas corretamente com o comando `SHOW TABLES;`. Note que tabelas temporárias aparecem apenas na sessão atual.
+3. Evite nomes conflitantes com tabelas permanentes.
 
 ---
 
