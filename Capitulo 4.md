@@ -381,4 +381,88 @@ SELECT * FROM temp_clientes;
 
 ---
 
-Coming soon: Tipos de colunas e dados no MySQL
+### **Tipos de Colunas e Dados no MySQL**
+
+No MySQL, os tipos de dados usados em colunas determinam o tipo de valores que podem ser armazenados. Existem três categorias principais de tipos de dados: **numéricos**, **string e texto**, e **data e hora**.
+
+#### **1. Tipos Numéricos**
+
+Os tipos numéricos são usados para armazenar números inteiros ou com casas decimais. Podem ser assinados (permitindo valores negativos) ou não assinados (apenas valores positivos).
+
+- **Inteiros:**
+  - `TINYINT`: Intervalo de -128 a 127 (ou 0 a 255 se não for assinado).
+  - `SMALLINT`: Intervalo de -32,768 a 32,767 (ou 0 a 65,535 se não for assinado).
+  - `MEDIUMINT`: Intervalo de -8.388.608 a 8.388.607.
+  - `INT` ou `INTEGER`: Intervalo de -2.147.483.648 a 2.147.483.647.
+  - `BIGINT`: Intervalo de -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807.
+
+- **Com Decimais:**
+  - `DECIMAL` ou `NUMERIC`: Precisão exata definida pelo usuário (ex.: `DECIMAL(10,2)` armazena até 10 dígitos, 2 dos quais são decimais).
+  - `FLOAT`: Menor precisão, armazena números em ponto flutuante.
+  - `DOUBLE` ou `REAL`: Alta precisão, usado para cálculos científicos.
+
+#### **2. Tipos de String e Texto**
+
+Armazenam caracteres alfanuméricos, podendo ter tamanhos fixos ou variáveis.
+
+- **Strings de Comprimento Fixo:**
+  - `CHAR(n)`: Armazena exatamente `n` caracteres. É eficiente para valores de tamanho fixo.
+
+- **Strings de Comprimento Variável:**
+  - `VARCHAR(n)`: Armazena até `n` caracteres, ocupando espaço proporcional ao tamanho do conteúdo armazenado.
+
+- **Texto Longo:**
+  - `TINYTEXT`: Até 255 caracteres.
+  - `TEXT`: Até 65.535 caracteres.
+  - `MEDIUMTEXT`: Até 16.777.215 caracteres.
+  - `LONGTEXT`: Até 4.294.967.295 caracteres.
+
+- **Outros Tipos de Strings:**
+  - `ENUM`: Conjunto fixo de valores predefinidos (ex.: `ENUM('Pequeno', 'Médio', 'Grande')`).
+  - `SET`: Conjunto de valores predefinidos, permitindo múltiplas seleções (ex.: `SET('Opção1', 'Opção2', 'Opção3')`).
+
+#### **3. Tipos de Data e Hora**
+
+Usados para armazenar informações relacionadas a datas e horários.
+
+- **Datas Simples:**
+  - `DATE`: Formato `YYYY-MM-DD`, intervalo de `1000-01-01` a `9999-12-31`.
+
+- **Horários Simples:**
+  - `TIME`: Formato `HH:MM:SS`, intervalo de `-838:59:59` a `838:59:59`.
+
+- **Datas e Horários Combinados:**
+  - `DATETIME`: Formato `YYYY-MM-DD HH:MM:SS`, intervalo de `1000-01-01 00:00:00` a `9999-12-31 23:59:59`.
+  - `TIMESTAMP`: Igual a `DATETIME`, mas é armazenado em UTC e convertido para o fuso horário local ao ser recuperado.
+
+- **Intervalos de Tempo:**
+  - `YEAR`: Armazena um ano no formato `YYYY` (intervalo de 1901 a 2155).
+
+#### **Boas Práticas ao Escolher Tipos de Dados**
+
+1. Use o tipo de dado mais compacto possível, levando em conta os valores esperados.
+2. Para texto variável, prefira `VARCHAR` ao invés de `TEXT`, a menos que seja necessário armazenar grandes volumes de dados.
+3. Escolha `DECIMAL` para valores monetários ou cálculos que exijam precisão exata.
+4. Use tipos de data e hora apropriados para facilitar cálculos e comparações temporais.
+
+#### **Exemplo de Criação de Tabela com Tipos Diversos**
+
+```sql
+CREATE TABLE exemplo_tipos (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10, 2),
+    data_criacao DATETIME
+) ENGINE=InnoDB;
+```
+
+- **`id`**: Inteiro auto-incrementado como identificador único.
+- **`nome`**: Texto curto com no máximo 50 caracteres.
+- **`descricao`**: Texto longo para detalhes do item.
+- **`preco`**: Valor monetário com duas casas decimais.
+- **`data_criacao`**: Combina data e hora para registrar quando o item foi adicionado.
+
+---
+
+Coming soon: Como criar índices
