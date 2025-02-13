@@ -241,7 +241,7 @@ CREATE TABLE assignment (
 
    - Retorna a lista de tabelas criadas no banco de dados atual.
    - **Exemplo de saída:**
-     ![Resultado SHOW TABLES](./images/TelaResultadoShowTables.png)
+   ![Resultado SHOW TABLES](./images/TelaResultadoShowTables.png)
 
 2. **Inspecionar uma tabela:**
 
@@ -258,7 +258,7 @@ CREATE TABLE assignment (
    ```
 
    - **Exemplo de saída:**
-     ![Resultado DESCRIBE department](./images/TelaResultadoDescribleDepartment.png)
+   ![Resultado DESCRIBE department](./images/TelaResultadoDescribleDepartment.png)
 
 ---
 
